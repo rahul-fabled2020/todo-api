@@ -7,8 +7,10 @@ export function up(client) {
   const query = `
   CREATE TABLE IF NOT EXISTS users (
       id serial primary key,
+      firstname VARCHAR ( 50 ) NOT NULL,
+      lastname VARCHAR ( 50 ) NOT NULL,
       username VARCHAR ( 50 ) UNIQUE NOT NULL,
-	    password VARCHAR ( 50 ) NOT NULL,
+	    password VARCHAR ( 100 ) NOT NULL,
 	    email VARCHAR ( 255 ) UNIQUE NOT NULL,
       created_at timestamp DEFAULT CURRENT_TIMESTAMP,
       updated_at timestamp DEFAULT CURRENT_TIMESTAMP
@@ -22,9 +24,6 @@ export function up(client) {
     })
     .catch((err) => {
       console.error(err);
-    })
-    .finally(() => {
-      client.end();
     });
 }
 
@@ -35,7 +34,7 @@ export function up(client) {
  */
 export function down(client) {
   const query = `
-    DROP TABLE users`;
+    DROP TABLE IF EXISTS users`;
 
   client
     .query(query)
@@ -44,8 +43,5 @@ export function down(client) {
     })
     .catch((err) => {
       console.error(err);
-    })
-    .finally(() => {
-      client.end();
     });
 }

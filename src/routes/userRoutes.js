@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
 import * as userController from '../controllers/users';
-import { findUser, userValidator } from '../validators/userValidator';
+import { findUser, userValidator, checkDuplicateUser } from '../validators/userValidator';
 
 const router = Router();
 
@@ -18,7 +18,7 @@ router.get('/:id', userController.fetchById);
 /**
  * POST /api/users
  */
-router.post('/', userValidator, userController.create);
+router.post('/', checkDuplicateUser, userValidator, userController.create);
 
 /**
  * PUT /api/users/:id

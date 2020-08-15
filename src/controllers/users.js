@@ -1,8 +1,6 @@
 import HttpStatus from 'http-status-codes';
 
-import User from '../models/user';
-
-const user = new User();
+import * as userService from '../services/userService';
 
 /**
  * Get all users.
@@ -12,8 +10,8 @@ const user = new User();
  * @param {Function} next
  */
 export function fetchAll(req, res, next) {
-  user
-    .all()
+  userService
+    .getAllUsers()
     .then(data => res.json({ data }))
     .catch(err => next(err));
 }
@@ -26,8 +24,8 @@ export function fetchAll(req, res, next) {
  * @param {Function} next
  */
 export function fetchById(req, res, next) {
-  user
-    .find(req.params.id)
+  userService
+    .getUser(req.params.id)
     .then(data => res.json({ data }))
     .catch(err => next(err));
 }
@@ -40,8 +38,8 @@ export function fetchById(req, res, next) {
  * @param {Function} next
  */
 export function create(req, res, next) {
-  user
-    .create(req.body)
+  userService
+    .createUser(req.body)
     .then(data => res.status(HttpStatus.CREATED).json({ data }))
     .catch(err => next(err));
 }
@@ -54,8 +52,8 @@ export function create(req, res, next) {
  * @param {Function} next
  */
 export function update(req, res, next) {
-  user
-    .update(req.params.id, req.body)
+  userService
+    .updateUser(req.params.id, req.body)
     .then(data => res.json({ data }))
     .catch(err => next(err));
 }
@@ -68,8 +66,8 @@ export function update(req, res, next) {
  * @param {Function} next
  */
 export function deleteUser(req, res, next) {
-  user
-    .delete(req.params.id)
+  userService
+    .deleteUser(req.params.id)
     .then(data => res.status(HttpStatus.NO_CONTENT).json({ data }))
     .catch(err => next(err));
 }

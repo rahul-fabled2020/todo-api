@@ -1,16 +1,15 @@
 import Joi from '@hapi/joi';
 
 import validate from '../utils/validate';
-import User from '../models/user';
-
-const user = new User();
+import * as userService from '../services/userService';
 
 // Validation schema
 const schema = Joi.object({
-  name: Joi.string()
-    .label('Name')
-    .max(90)
-    .required()
+  firstname: Joi.string().required(),
+  lastname: Joi.string().required(),
+  username: Joi.string().label('username').max(90).required(),
+  email: Joi.string().email().required(),
+  password: Joi.string().required()
 });
 
 /**
@@ -22,9 +21,10 @@ const schema = Joi.object({
  * @returns {Promise}
  */
 function userValidator(req, res, next) {
+  
   return validate(req.body, schema)
     .then(() => next())
-    .catch(err => next(err));
+    .catch((err) => next(err));
 }
 
 /**
@@ -36,10 +36,28 @@ function userValidator(req, res, next) {
  * @returns {Promise}
  */
 function findUser(req, res, next) {
-  return user
+  
+  return userService
     .getUser(req.params.id)
     .then(() => next())
-    .catch(err => next(err));
+    .catch((err) => next(err));
 }
 
-export { findUser, userValidator };
+/**
+ * Validate users absence.
+ *
+ * @param   {Object}   req
+ * @param   {Object}   res
+ * @param   {Function} next
+ * @returns {Promise}
+ */
+function checkDuplicateUser(req, res, next) {
+  
+  return userService
+    .filterUserBy(req.body)
+    .then(() => next())
+    .catch((err) => next(err));
+}
+
+
+export { findUser, userValidator, checkDuplicateUser };

@@ -11,7 +11,8 @@ export function up(client) {
       lastname VARCHAR ( 50 ) NOT NULL,
       username VARCHAR ( 50 ) UNIQUE NOT NULL,
 	    password VARCHAR ( 100 ) NOT NULL,
-	    email VARCHAR ( 255 ) UNIQUE NOT NULL,
+      email VARCHAR ( 255 ) UNIQUE NOT NULL,
+      role VARCHAR ( 20 ) DEFAULT 'user',
       created_at timestamp DEFAULT CURRENT_TIMESTAMP,
       updated_at timestamp DEFAULT CURRENT_TIMESTAMP
   );

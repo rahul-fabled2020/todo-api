@@ -18,7 +18,7 @@ app.locals.title = process.env.APP_NAME;
 app.locals.version = process.env.APP_VERSION;
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(errorHandler.bodyParser);
 
 // API Routes

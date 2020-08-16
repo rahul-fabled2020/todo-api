@@ -22,13 +22,30 @@ export function getAllUsers() {
 export function getUser(id) {
   return user.find(id).then((user) => {
     if (user.rows.length === 0) throw Boom.notFound("The user doesn't exist.");
+
     return user.rows[0];
   });
 }
 
-export function filterUserBy({ username, email }) {
-  return user.filterBy({ username, email }, 'OR').then((res) => {
-    if (res.rows.length > 0) throw Boom.badRequest('The email or username is already resgisterd.');
+export function getUserBy(filterData) {
+  return user.filterBy(filterData).then((res) => {
+    if (res.rows.length === 0) throw Boom.notFound("The user doesn't exist.");
+
+    return res.rows;
+  });
+}
+
+export function checkUsernameExistence({ username }) {
+  return user.filterBy({ username }).then((res) => {
+    if (res.rows.length > 0) throw Boom.badRequest('The username is already resgisterd.');
+
+    return res;
+  });
+}
+
+export function checkEmailExistence({ email }) {
+  return user.filterBy({ email }).then((res) => {
+    if (res.rows.length > 0) throw Boom.badRequest('The email is already resgisterd.');
 
     return res;
   });
@@ -45,7 +62,6 @@ export function createUser(userData) {
 
   return new Promise((resolve, reject) => {
     bcrypt.hash(password, 10).then((hash) => {
-  
       user
         .create({ ...userData, password: hash })
         .then((res) => user.filterBy({ username }))
@@ -65,12 +81,17 @@ export function createUser(userData) {
  * @returns {Promise}
  */
 export function updateUser(id, userData) {
-  const { username } = userData;
+  const { username, password } = userData;
 
-  return user
-    .update(id, userData)
-    .then((res) => user.filterBy({ username }))
-    .then((res) => res.rows[0]);
+  return new Promise((resolve, reject) => {
+    bcrypt.hash(password, 10).then((hash) => {
+      user
+        .update(id, { ...userData, password: hash })
+        .then((res) => user.filterBy({ username }))
+        .then((res) => resolve(res.rows[0]))
+        .catch((err) => reject(err));
+    });
+  });
 }
 
 /**

@@ -1,6 +1,7 @@
 import { Router } from 'express';
 
 import userRoutes from './routes/userRoutes';
+import todoRoutes from './routes/todoRoutes';
 import authRoutes from './routes/authRoutes';
 import authenticate from './middlewares/authenticate';
 
@@ -20,6 +21,7 @@ router.get('/', (req, res) => {
 });
 
 router.use('/users', authenticate, userRoutes);
+router.use('/todos', authenticate, todoRoutes);
 router.use('/auth', authRoutes);
 
 export default router;

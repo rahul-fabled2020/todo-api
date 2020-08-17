@@ -9,6 +9,7 @@ export function up(client) {
       id SERIAL PRIMARY KEY,
       title VARCHAR ( 200 ) NOT NULL,
       description VARCHAR ( 1000 ) NOT NULL,
+      isCompleted VARCHAR (10),
       user_id INT NOT NULL,
 
       created_at timestamp DEFAULT CURRENT_TIMESTAMP,

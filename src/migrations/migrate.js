@@ -5,5 +5,5 @@ import * as todos from './create_todos_table';
 // users.down(client);
 // users.up(client);
 
-// todos.down(client);
-todos.up(client);
+todos.down(client);
+// todos.up(client);

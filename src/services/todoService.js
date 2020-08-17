@@ -10,7 +10,7 @@ const todo = new Todo();
  * @returns {Promise}
  */
 export function getAllTodos() {
-  return todo.all().then((res) => res.rows);
+  return todo.all().then((res) => formatTodos(res.rows));
 }
 
 /**
@@ -23,14 +23,13 @@ export function getTodo(id) {
   return todo.find(id).then((todo) => {
     if (todo.rows.length === 0) throw Boom.notFound("The todo doesn't exist.");
 
-    return todo.rows[0];
+    return formatTodos(todo.rows)[0];
   });
 }
 
 export function getTodoBy(filterData) {
-  
   return todo.filterBy(filterData).then((res) => {
-    return res.rows;
+    return formatTodos(res.rows);
   });
 }
 
@@ -46,7 +45,7 @@ export function createTodo(todoData) {
   return todo
     .create(todoData)
     .then((res) => todo.filterBy({ title }))
-    .then((res) => res.rows[0])
+    .then((res) => formatTodos(res.rows)[0])
     .catch((err) => err);
 }
 
@@ -63,7 +62,7 @@ export function updateTodo(id, todoData) {
   return todo
     .update(id, todoData)
     .then((res) => todo.filterBy({ title }))
-    .then((res) => res.rows[0])
+    .then((res) => formatTodos(res.rows)[0])
     .catch((err) => err);
 }
 
@@ -75,4 +74,16 @@ export function updateTodo(id, todoData) {
  */
 export function deleteTodo(id) {
   return todo.destroy(id);
+}
+
+function formatTodos(todos) {
+  return todos.map((todo) => {
+    const isCompleted = todo.iscompleted ==="true" ? true : false;
+    delete todo.iscompleted;
+
+    return {
+      ...todo,
+      isCompleted
+    };
+  });
 }

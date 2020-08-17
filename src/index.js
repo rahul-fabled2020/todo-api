@@ -1,5 +1,6 @@
 import './env';
 
+import cors from 'cors';
 import express from 'express';
 import routes from './routes';
 import logger, { logStream } from './utils/logger';
@@ -17,6 +18,7 @@ app.set('host', APP_HOST);
 app.locals.title = process.env.APP_NAME;
 app.locals.version = process.env.APP_VERSION;
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(errorHandler.bodyParser);

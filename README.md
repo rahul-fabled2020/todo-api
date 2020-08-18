@@ -45,7 +45,7 @@
 
       body: 
       ```javascript
-       {
+      {
         "firstname": "value",
         "lastname": "value",
         "username": "value",
@@ -55,7 +55,7 @@
       ```
     for POST: /api/todos and PUT: /api/todos/:id
 
-      body: 
+      body:
       ```javascript
        {
         "title": "value",

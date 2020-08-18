@@ -158,3 +158,16 @@
     Code: 204
 
     Content: {}
+
+- Error Response
+
+    Example
+    
+    ```javascript
+    {
+      "error": {
+          "code": 404,
+          "message": "The user doesn't exist."
+      }
+    }
+    ```

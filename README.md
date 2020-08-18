@@ -32,7 +32,7 @@
     **Required:**
       id=[integer]
 
-  - `Data Params`
+- `Data Params`
 
     headers: ```javascript
      {

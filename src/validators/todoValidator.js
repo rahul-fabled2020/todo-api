@@ -7,7 +7,7 @@ import * as todoService from '../services/todoService';
 const schema = Joi.object({
   title: Joi.string().max(200).required(),
   description: Joi.string().max(1000).required(),
-  isCompleted: Joi.string().max(10)
+  iscompleted: Joi.string().max(10)
 });
 
 /**

@@ -5,6 +5,7 @@ const COLUMN_TYPES = {
   id: 'number',
   title: 'string',
   description: 'string',
+  iscompleted: 'string',
   user_id: 'number',
   created_at: 'string',
   updated_at: 'string'

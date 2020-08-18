@@ -52,7 +52,7 @@
         "password": "value",
         "email": "value"
       }
-    ```
+      ```
     for POST: /api/todos and PUT: /api/todos/:id
 
       body: 
@@ -61,7 +61,7 @@
         "title": "value",
         "description": "value"
       }
-     ```
+      ```
 - Success Response:
 
   for GET /api/users

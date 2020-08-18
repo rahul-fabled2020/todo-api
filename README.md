@@ -34,35 +34,42 @@
 
   - `Data Params`
 
-    headers: ```js {
+    headers: ```javascript
+     {
       'Content-Type': 'application/json',
       Authorization: token
-    }```
-
+    }
+    ```
     for POST: /api/users and PUT: /api/users/:id
 
-      body: ```js {
+      body: 
+      ```javascript
+       {
         "firstname": "value",
         "lastname": "value",
         "username": "value",
         "password": "value",
         "email": "value"
-      }```
-    
+      }
+    ```
     for POST: /api/todos and PUT: /api/todos/:id
 
-      body: ```js {
+      body: 
+      ```javascript
+       {
         "title": "value",
         "description": "value"
-      }```
-
+      }
+     ```
 - Success Response:
 
   for GET /api/users
 
     Code: 200
 
-    Content: ```js {data: [
+    Content: 
+    ```javascript
+     {data: [
       {
         "id": value,
         "firstname": "value",
@@ -77,13 +84,16 @@
       {
         ...
       }
-    ]}```
+    ]}
+    ```
 
   for GET /api/users/:id, PUT /api/users/:id, POST /api/users
 
     Code: 200
 
-    Content: ```js {
+    Content: 
+    ```javascript
+     {
       "data": {
         "id": value,
         "firstname": "value",
@@ -95,13 +105,15 @@
         "created_at": "value",
         "updated_at: "value"        
       }
-    }```
-  
+    }
+    ```
   for GET /api/todos
 
     Code: 200
 
-    Content: ```js {
+    Content: 
+    ```javascript
+     {
       data: [
         {
           "id": 3,
@@ -117,13 +129,16 @@
         }
 
       ]
-    }```
+    }
+    ```
 
   for GET /api/todos/:id, PUT /api/todos/:id, POST /api/todos
 
     Code: 200
 
-    Content: ```js {
+    Content: 
+    ```javascript
+     {
       "data": {
         "id": 3,
         "title": "Eat on time",
@@ -133,10 +148,11 @@
         "updated_at": "2020-08-17T20:26:23.001Z",
         "isCompleted": false
       }      
-    }```
+    }
+    ```
   
   for DELTE /api/users/:id, DELETE /api/todos/:id
 
     Code: 204
-    
+
     Content: {}

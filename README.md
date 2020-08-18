@@ -43,25 +43,25 @@
     ```
     for POST: /api/users and PUT: /api/users/:id
 
-      body: 
-      ```javascript
-      {
-        "firstname": "value",
-        "lastname": "value",
-        "username": "value",
-        "password": "value",
-        "email": "value"
-      }
-      ```
+    body: 
+    ```javascript
+    {
+      "firstname": "value",
+      "lastname": "value",
+      "username": "value",
+      "password": "value",
+      "email": "value"
+    }
+    ```
     for POST: /api/todos and PUT: /api/todos/:id
 
-      body:
-      ```javascript
-       {
-        "title": "value",
-        "description": "value"
-      }
-      ```
+    body:
+    ```javascript
+      {
+      "title": "value",
+      "description": "value"
+    }
+    ```
 - Success Response:
 
   for GET /api/users

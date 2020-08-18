@@ -3,6 +3,12 @@ import jwt from 'jsonwebtoken';
 
 import * as userService from '../services/userService';
 
+/**
+ * Authenticates user based on provided token
+ * @param {Object} req HTTP Request Object
+ * @param {Object} res HTTP Response Object
+ * @param {Function} next Forwards to next middleware
+ */
 export default function authenticate(req, res, next) {
   let token;
   if (req.headers['authorization']) {

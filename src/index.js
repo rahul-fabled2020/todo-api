@@ -27,9 +27,9 @@ app.use(errorHandler.bodyParser);
 app.use('/api', routes);
 
 app.get('/', (req, res) => {
-  console.log('Root');
+  
   res.json({
-    msg: 'Success'
+    msg: 'Welcome to the To-do API'
   });
 });
 

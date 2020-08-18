@@ -27,6 +27,10 @@ export function getUser(id) {
   });
 }
 
+/**
+ * Get filtered users
+ * @param {Object} filterData 
+ */
 export function getUserBy(filterData) {
   return user.filterBy(filterData).then((res) => {
     if (res.rows.length === 0) throw Boom.notFound("The user doesn't exist.");
@@ -35,6 +39,10 @@ export function getUserBy(filterData) {
   });
 }
 
+/**
+ * Checks if the username exists in the table
+ * @param {Object} param0 User Object
+ */
 export function checkUsernameExistence({ username }) {
   return user.filterBy({ username }).then((res) => {
     if (res.rows.length > 0) throw Boom.badRequest('The username is already resgisterd.');
@@ -43,6 +51,10 @@ export function checkUsernameExistence({ username }) {
   });
 }
 
+/**
+ * Checks if email exists in the table
+ * @param {Object} param0 User Object
+ */
 export function checkEmailExistence({ email }) {
   return user.filterBy({ email }).then((res) => {
     if (res.rows.length > 0) throw Boom.badRequest('The email is already resgisterd.');

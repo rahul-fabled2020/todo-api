@@ -27,6 +27,11 @@ export function getTodo(id) {
   });
 }
 
+/**
+ * Get filtered todos
+ * @param {Object} filterData field names with corresponding values
+ * @returns {Promise}
+ */
 export function getTodoBy(filterData) {
   return todo.filterBy(filterData).then((res) => {
     return formatTodos(res.rows);
@@ -76,6 +81,10 @@ export function deleteTodo(id) {
   return todo.destroy(id);
 }
 
+/**
+ * Formats the todo to convert iscompleted into Camel Case with boolean value
+ * @param {Object} todos 
+ */
 function formatTodos(todos) {
   return todos.map((todo) => {
     const isCompleted = todo.iscompleted ==="true" ? true : false;

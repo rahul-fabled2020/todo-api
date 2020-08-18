@@ -18,9 +18,16 @@ export function register(req, res, next) {
   .catch(err => next(err));
 }
 
+/**
+ * Returns the token on  successful login
+ * @param {Object} req HTTP Request Object
+ * @param {Object} res HTTP Response Object
+ * @param {Function} next Forwards to next middleware
+ */
+
 export function login(req, res, next) {
   const { username, password } = req.body;
-  //validate()
+  
   userService
     .getUserBy({ username })
     .then((data) => {
@@ -43,6 +50,10 @@ export function login(req, res, next) {
     .catch((err) => next(err));
 }
 
+/**
+ * Generates a token
+ * @param {Object} data User object
+ */
 function createToken(data) {
   return new Promise((resolve, reject) => {
     jwt.sign(data, process.env.JWT_SECRET, (err, token) => {

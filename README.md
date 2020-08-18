@@ -34,7 +34,8 @@
 
 - `Data Params`
 
-    headers: ```javascript
+    headers: 
+    ```javascript
      {
       'Content-Type': 'application/json',
       Authorization: token
